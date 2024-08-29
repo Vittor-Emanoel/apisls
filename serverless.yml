@@ -1,0 +1,23 @@
+service: apisls
+frameworkVersion: "3"
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  hello:
+    handler: src/functions/hello.handler
+    events:
+      - httpApi:
+          path: /
+          method: POST
+  getUserById:
+    handler: src/functions/getUserById.index.handler
+    events:
+      - httpApi:
+          path: /users/{userId}
+          method: GET
